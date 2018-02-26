@@ -4,4 +4,10 @@ set -x
 
 set -eo pipefail
 
-/usr/libexec/s2i/assemble
+rm -rf /tmp/src/.git*
+
+cp -Rf /tmp/src/. /opt/app-root/src/
+
+rm -rf /tmp/src
+
+fix-permissions /opt/app-root/src
