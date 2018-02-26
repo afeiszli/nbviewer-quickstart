@@ -1,0 +1,60 @@
+#!/bin/bash
+
+set -x
+
+set -eo pipefail
+
+# Create build directory.
+
+mkdir -p /tmp/build
+
+# Ensure using latest versions of Python packaging tools.
+
+pip install -U pip setuptools wheel
+
+# Install libmecached as required by pylibmc package used by nbviewer.
+
+curl -s -L -o /tmp/build/libmemcached-1.0.18.tar.gz https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gz
+
+tar -C /tmp/build -xf /tmp/build/libmemcached-1.0.18.tar.gz
+
+(cd /tmp/build/libmemcached-1.0.18 && ./configure --prefix /opt/app-root && make && make install)
+
+export CPPFLAGS=-I/opt/app-root/include
+export LDFLAGS=-L/opt/app-root/lib
+
+# Install pandoc which is required by nbconvert.
+
+curl -L -s -o /tmp/build/pandoc-2.1.1-linux.tar.gz https://github.com/jgm/pandoc/releases/download/2.1.1/pandoc-2.1.1-linux.tar.gz
+
+tar -C /opt/app-root --strip-components 1 -xf /tmp/build/pandoc-2.1.1-linux.tar.gz
+
+# Clean up build directories.
+
+rm -rf /tmp/build
+
+# Install base packages needed for running nbviewer.
+
+pip install nbviewer
+
+# This S2I assemble script is only used when creating the custom image.
+# For when running the image, or using it as a S2I builder, we use a second
+# set of custom S2I scripts. We now need to move these into the correct
+# location and have the custom image use those by dropping in an image
+# metadata file which overrides the labels of the base image.
+
+mkdir -p /tmp/.s2i
+
+mv /tmp/src/builder/image_metadata.json /tmp/.s2i/image_metadata.json
+
+mv /tmp/src/builder /opt/app-root/builder
+
+rm -rf /tmp/src
+
+# Ensure passwd/group file intercept happens for any shell environment.
+
+echo "source /opt/app-root/etc/generate_container_user" >> /opt/app-root/etc/scl_enable
+
+# Fixup permissions on directories and files.
+
+fix-permissions /opt/app-root
