@@ -177,7 +177,7 @@
                                 "containers": [
                                     {
                                         "name": "nbviewer",
-                                        "image": "${APPLICATION_NAME}:latest",
+                                        "image": "${IMAGE_NAME}",
                                         "ports": [
                                             {
                                                 "containerPort": 8080,
