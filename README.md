@@ -20,7 +20,7 @@ Loading the Templates
 To load the templates from this repository for deploying the image, or using it as an S2I builder to create your own custom image with embedded notebook files, run:
 
 ```
-https://raw.githubusercontent.com/jupyter-on-openshift/nbviewer-quickstart/master/templates.json
+oc create -f https://raw.githubusercontent.com/jupyter-on-openshift/nbviewer-quickstart/master/templates.json
 ```
 
 This will create the following templates:
