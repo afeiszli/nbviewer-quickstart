@@ -1,9 +1,7 @@
 #!/bin/bash
 
-set -x
-
 set -eo pipefail
 
 # Start the nbviewer instance.
 
-exec start-nbviewer.sh
+exec python -m nbviewer --port=8080  "$@" ${NBVIEWER_ARGS}
