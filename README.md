@@ -60,7 +60,7 @@ Serving up Embedded Notebooks
 If you mount a persistent volume against the Jupyter notebook viewer instance, or build a custom image using the S2I build mechanism, you can enable access by enabling the ``localfiles`` feature of the Jupyter notebook viewer. This can be done by setting the ``NBVIEWER_LOCALFILES`` environment variable.
 
 ```
-oc set dc/my-nbviewer NBVIEWER_LOCALFILES=/opt/app-root/src
+oc set env dc/my-nbviewer NBVIEWER_LOCALFILES=/opt/app-root/src
 ```
 
 In your browser, when on the home page for the Jupyter notebook viewer site, add ``/localfile`` at the end of the URL to get a list of the files in the specified directory of the image, or persistent volume.
