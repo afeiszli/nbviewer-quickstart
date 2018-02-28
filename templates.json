@@ -117,7 +117,7 @@
             "parameters": [
                 {
                     "name": "APPLICATION_NAME",
-                    "value": "custom-nbviewer",
+                    "value": "nbviewer",
                     "required": true
                 },
                 {
@@ -256,7 +256,7 @@
             "parameters": [
                 {
                     "name": "APPLICATION_NAME",
-                    "value": "custom-nbviewer",
+                    "value": "nbviewer",
                     "required": true
                 },
                 {
