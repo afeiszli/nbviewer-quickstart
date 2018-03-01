@@ -27,7 +27,7 @@ This will create the following templates:
 
 * ``nbviewer-builder``
 * ``nbviewer-deployer``
-* ``nbviewer-quickstart``
+* ``nbviewer-localfiles``
 
 Deploying the Notebook Viewer
 -----------------------------
@@ -43,6 +43,14 @@ The name of the deployment created will be ``nbviewer````. If you want to change
 ```
 oc new-app --template nbviewer-deployer \
   --param APPLICATION_NAME=my-nbviewer
+```
+
+If you want to deploy ``nbviewer`` and have it host a set of notebook files residing on a Git repository, you can use the ``nbviewer-localfiles`` template.
+
+```
+oc new-app --template nbviewer-localfiles \
+    --param APPLICATION_NAME=jakevdp-book \
+    --param GIT_REPOSITORY_URL=https://github.com/jakevdp/PythonDataScienceHandbook
 ```
 
 Deleting the Application

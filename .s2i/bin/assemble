@@ -49,7 +49,12 @@ mv /tmp/src/builder/image_metadata.json /tmp/.s2i/image_metadata.json
 
 mv /tmp/src/builder /opt/app-root/builder
 
-# Also move into place helper scripts and the script to start JupyterHub.
+# Also move into place helper scripts, an index file when running in
+# localfiles mode and the script to start nbviewer.
+
+mkdir /opt/app-root/localfiles
+
+mv /tmp/src/localfiles.html /opt/app-root/localfiles/index.html
 
 mv /tmp/src/start-nbviewer.sh /opt/app-root/bin/
 

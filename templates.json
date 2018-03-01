@@ -245,10 +245,10 @@
             "kind": "Template",
             "apiVersion": "v1",
             "metadata": {
-                "name": "nbviewer-quickstart",
+                "name": "nbviewer-localfiles",
                 "annotations": {
-                    "openshift.io/display-name": "Notebook Viewer Quickstart",
-                    "description": "Template for creating and deploying a customised Notebook Viewer.",
+                    "openshift.io/display-name": "Notebook Viewer (Local Files)",
+                    "description": "Template for creating and deploying a Notebook Viewer with a set of local files.",
                     "iconClass": "icon-python",
                     "tags": "python,jupyter,nbviewer"
                 }
@@ -276,6 +276,16 @@
                 },
                 {
                     "name": "CONTEXT_DIR",
+                    "value": "",
+                    "required": false
+                },
+                {
+                    "name": "LOCALFILES_PATH",
+                    "value": "",
+                    "required": false
+                },
+                {
+                    "name": "TEMPLATE_PATH",
                     "value": "",
                     "required": false
                 }
@@ -394,6 +404,16 @@
                                             {
                                                 "containerPort": 8080,
                                                 "protocol": "TCP"
+                                            }
+                                        ],
+                                        "env" : [
+                                            {
+                                                "name": "NBVIEWER_LOCALFILES",
+                                                "value": "/opt/app-root/src/${LOCALFILES_PATH}"
+                                            },
+                                            {
+                                                "name": "NBVIEWER_TEMPLATES",
+                                                "value": "/opt/app-root/src/${TEMPLATE_PATH}"
                                             }
                                         ]
                                     }
