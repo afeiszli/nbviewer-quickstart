@@ -73,7 +73,7 @@ oc set env dc/my-nbviewer NBVIEWER_LOCALFILES=/opt/app-root/src
 
 In your browser, when on the home page for the Jupyter notebook viewer site, add ``/localfile`` at the end of the URL to get a list of the files in the specified directory of the image, or persistent volume.
 
-If desired, you could use the S2I build process to create a custom image with templates for the Jupyter notebook viewer, and set the ``NBVIEWER_TEMPLATE_PATH`` environment variable. This will allow you to customise the appearance of the home page.
+If desired, you could use the S2I build process to create a custom image with templates for the Jupyter notebook viewer, and set the ``NBVIEWER_TEMPLATES`` environment variable. This will allow you to customise the appearance of the home page. See the ``nbviewer-localfiles`` template as an example of how to do this.
 
 Using the OpenShift Web Console
 -------------------------------
