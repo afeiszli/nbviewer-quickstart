@@ -17,4 +17,8 @@ if [ ! -z "$NBVIEWER_TEMPLATES" ]; then
     fi
 fi
 
-exec python -m nbviewer --port=8080  "$@" $NBVIEWER_ARGS
+if [ -z $NBVIEWER_PORT ]; then
+    NBVIEWER_PORT=8080
+fi
+
+exec python -m nbviewer --port=$NBVIEWER_PORT  "$@" $NBVIEWER_ARGS
