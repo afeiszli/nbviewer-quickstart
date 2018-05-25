@@ -21,4 +21,9 @@ if [ -z $NBVIEWER_PORT ]; then
     NBVIEWER_PORT=8080
 fi
 
+if echo $JUPYTERHUB_SERVICE_PREFIX | grep -q '{username}'; then
+    USER_NAME=$(echo $HOSTNAME | sed 's/.*-nb-//')
+    JUPYTERHUB_SERVICE_PREFIX=$(echo $JUPYTERHUB_SERVICE_PREFIX | sed 's/{username}/'$USER_NAME'/')
+fi
+
 exec python -m nbviewer --port=$NBVIEWER_PORT  "$@" $NBVIEWER_ARGS
