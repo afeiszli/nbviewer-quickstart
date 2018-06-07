@@ -35,6 +35,8 @@ rm -rf /tmp/build
 
 # Install base packages needed for running nbviewer.
 
+# pycurl 7.43.0.1 fails to install, lock the version
+pip install pycurl==7.43.0.1
 pip install nbviewer
 
 # This S2I assemble script is only used when creating the custom image.
