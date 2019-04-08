@@ -35,9 +35,9 @@ fi
 
 if echo $JUPYTERHUB_SERVICE_PREFIX | grep -q '{username}'; then
     USER_NAME=$(echo $HOSTNAME | sed 's/.*-nb-//')
-    if [ -n "$JUPYTERHUB_USER_NAME" ]; then
-        USER_NAME=$JUPYTERHUB_USER_NAME
-    fi
+#    if [ -n "$JUPYTERHUB_USER_NAME" ]; then
+#        USER_NAME=$JUPYTERHUB_USER_NAME
+#    fi
 
     JUPYTERHUB_SERVICE_PREFIX=$(echo $JUPYTERHUB_SERVICE_PREFIX | sed 's/{username}/'$USER_NAME'/')
 fi
